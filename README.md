@@ -6,7 +6,7 @@ A set of scripts for using Oracle Database 23c Free docker image in [Oracle Cont
 Configuration
 -------------
 
-Copy the file `dotenv.sample` to a file named `.env` and rewrite the contents as needed.
+Copy the file `dotenv.sample` to a file named `.env` and modify the contents as needed.
 
 ```shell
 ORACLE_CONTAINER_NAME=oracle_database_23c_free
@@ -14,8 +14,8 @@ ORACLE_LISTENER_PORT=1521
 ORACLE_PWD=oracle
 ```
 
-Example of use
---------------
+Examples of Use
+---------------
 
 ### [run.sh](run.sh) ###
 
