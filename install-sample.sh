@@ -37,9 +37,14 @@ if [[ $health != "healthy" ]]; then
 fi
 
 $DOCKER container exec -i "$ORACLE_CONTAINER_NAME" bash <<EOT
-curl -sSL https://github.com/oracle/db-sample-schemas/archive/refs/tags/v21.1.tar.gz | tar xzf -
-cd db-sample-schemas-21.1
-/opt/oracle/product/23c/dbhomeFree/perl/bin/perl -p -i.bak -e 's#__SUB__CWD__#'/home/oracle/db-sample-schemas-21.1'#g' ./*.sql ./*/*.sql ./*/*.dat
-echo "@mksample $ORACLE_PWD $ORACLE_PWD $ORACLE_PWD $ORACLE_PWD $ORACLE_PWD $ORACLE_PWD $ORACLE_PWD $ORACLE_PWD users temp /home/oracle/log/ FREEPDB1" \
-  | sqlplus system/"$ORACLE_PWD"@FREEPDB1
+curl -sSL https://github.com/oracle-samples/db-sample-schemas/archive/refs/tags/v23.3.tar.gz | tar xzf -
+cd /home/oracle/db-sample-schemas-23.3/human_resources
+sed -i "s/ACCEPT pass PROMPT/ACCEPT pass DEFAULT "$ORACLE_PWD" PROMPT/" hr_install.sql
+echo -e "\n\n\n" | /opt/oracle/product/23ai/dbhomeFree/sqlcl/bin/sql system/"$ORACLE_PWD"@FREEPDB1 @hr_install.sql
+cd /home/oracle/db-sample-schemas-23.3/customer_orders
+sed -i "s/ACCEPT pass PROMPT/ACCEPT pass DEFAULT "$ORACLE_PWD" PROMPT/" co_install.sql
+echo -e "\n\n\n" | /opt/oracle/product/23ai/dbhomeFree/sqlcl/bin/sql system/"$ORACLE_PWD"@FREEPDB1 @co_install.sql
+cd /home/oracle/db-sample-schemas-23.3/sales_history
+sed -i "s/ACCEPT pass PROMPT/ACCEPT pass DEFAULT "$ORACLE_PWD" PROMPT/" sh_install.sql
+echo -e "\n\n\n" | /opt/oracle/product/23ai/dbhomeFree/sqlcl/bin/sql system/"$ORACLE_PWD"@FREEPDB1 @sh_install.sql
 EOT
