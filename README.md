@@ -103,7 +103,7 @@ $
 
 ### [sqlplus.sh](sqlplus.sh) ###
 
-Connect to CDB root and confirm the connection.
+Connect to CDB root with SQL*Plus and confirm the connection.
 
 ```console
 $ ./sqlplus.sh system/oracle
@@ -130,7 +130,7 @@ Version 23.4.0.24.05
 $
 ```
 
-Connect to PDB and confirm the connection. If you have sample schemas installed, browse to the sample table.
+Connect to PDB with SQL*Plus and confirm the connection. If you have sample schemas installed, browse to the sample table.
 
 ```console
 $ ./sqlplus.sh system/oracle@FREEPDB1
@@ -183,6 +183,34 @@ Disconnected from Oracle Database 23ai Free Release 23.0.0.0.0 - Develop, Learn,
 Version 23.4.0.24.05
 $
 ```
+
+### [sql.sh](sql.sh) ###
+
+Connect to PDB with SQLcl and browse to the sample table.
+
+```console
+$ ./sql.sh hr/oracle@FREEPDB1
+
+
+SQLcl: Release 24.1 Production on Fri May 10 00:55:34 2024
+
+Copyright (c) 1982, 2024, Oracle.  All rights reserved.
+
+Connected to:
+Oracle Database 23ai Free Release 23.0.0.0.0 - Develop, Learn, and Run for Free
+Version 23.4.0.24.05
+
+SQL> set sqlformat csv
+SQL> SELECT * FROM hr.employees WHERE rownum <= 3;
+"EMPLOYEE_ID","FIRST_NAME","LAST_NAME","EMAIL","PHONE_NUMBER","HIRE_DATE","JOB_ID","SALARY","COMMISSION_PCT","MANAGER_ID","DEPARTMENT_ID"
+100,"Steven","King","SKING","1.515.555.0100",17-JUN-13,"AD_PRES",24000,,,90
+101,"Neena","Yang","NYANG","1.515.555.0101",21-SEP-15,"AD_VP",17000,,100,90
+102,"Lex","Garcia","LGARCIA","1.515.555.0102",13-JAN-11,"AD_VP",17000,,100,90
+
+SQL> exit
+Disconnected from Oracle Database 23ai Free Release 23.0.0.0.0 - Develop, Learn, and Run for Free
+Version 23.4.0.24.05
+$
 
 ### [logs.sh](logs.sh) ###
 
