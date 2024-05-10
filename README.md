@@ -211,6 +211,7 @@ SQL> exit
 Disconnected from Oracle Database 23ai Free Release 23.0.0.0.0 - Develop, Learn, and Run for Free
 Version 23.4.0.24.05
 $
+```
 
 ### [logs.sh](logs.sh) ###
 
