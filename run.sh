@@ -30,7 +30,7 @@ $DOCKER container run \
   --name "$ORACLE_CONTAINER_NAME" \
   -p "$ORACLE_LISTENER_PORT":1521 \
   -e ORACLE_PWD="$ORACLE_PWD" \
-  container-registry.oracle.com/database/free:23.4.0.0
+  container-registry.oracle.com/database/free:23.5.0.0
 
 echo -n "Waiting for $ORACLE_CONTAINER_NAME to get healthy ..."
 while true; do
